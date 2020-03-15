@@ -18,12 +18,12 @@ La página tendrá un catálogo de juegos, con sus respectivas categorías. Esto
 
 ## Planificación
 
-**1º** Crear el diseño base de las diferentes páginas que formaran las web (principal, juegos, perfil, rankings...) sin tocar aún CSS.
-**2º** Poner 2 o 3 juegos en la página que se puedan seleccionar y jugar.
-**3º** Diseñar la BBDD
-**4º** Conseguir que se puedan registrar usuarios
-**5º** Crear el sistema de rankings, puntos, logros... y modificar los juegos para que respodan a todo esto.
-**6º** Tocar el aspecto visual de la página.
-**7º** Crear más juegos (alguno multijugador, aunque esto no lo tengo 100% seguro)
+**1º** Crear el diseño base de las diferentes páginas que formaran las web (principal, juegos, perfil, rankings...) sin tocar aún CSS.  
+**2º** Poner 2 o 3 juegos en la página que se puedan seleccionar y jugar.  
+**3º** Diseñar la BBDD.  
+**4º** Conseguir que se puedan registrar usuarios.  
+**5º** Crear el sistema de rankings, puntos, logros... y modificar los juegos para que respodan a todo esto.  
+**6º** Tocar el aspecto visual de la página.  
+**7º** Crear más juegos (alguno multijugador, aunque esto no lo tengo 100% seguro).  
 
 En principio quiero tener listos los puntos 1 y 2 en estos 15 días de cuarentena. 

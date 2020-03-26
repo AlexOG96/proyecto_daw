@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-03-2020 a las 17:51:29
+-- Tiempo de generación: 26-03-2020 a las 19:52:48
 -- Versión del servidor: 10.4.11-MariaDB
 -- Versión de PHP: 7.4.1
 
@@ -103,16 +103,16 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- Filtros para la tabla `adivinanumero`
+--
+ALTER TABLE `adivinanumero`
+  ADD CONSTRAINT `adivinanumero_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `usuarios` (`ID`);
+
+--
 -- Filtros para la tabla `parejas`
 --
 ALTER TABLE `parejas`
-  ADD CONSTRAINT `parejas_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `adivinanumero` (`ID`);
-
---
--- Filtros para la tabla `usuarios`
---
-ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `parejas` (`ID`);
+  ADD CONSTRAINT `parejas_ibfk_1` FOREIGN KEY (`ID`) REFERENCES `usuarios` (`ID`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parejas</title>
+    <link rel="stylesheet" href="estiloparejas.css">
+
+    <script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
+    </script>
+
+    <script>
+        let numeros = [];
+        let i;
+        let estado = false;
+        let espera = false;
+        let puntuacion = 0;
+        let id=0;
+    $(document).ready(function() {
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+            }
+
+        for (i=1;i<=10;i++) {
+            numeros.push(i);
+            numeros.push(i);
+            numeros.sort(function() { return Math.random()-0.5 });
+        }
+        for (numero of numeros) {
+            $("#contenedor").append(`
+            <div class="flip-box" name="${numero}">
+                <div class="flip-box-inner">
+                    <div class="flip-box-front">
+                        <img src="img/dorso.png" width="80%">
+                    </div>
+                    <div class="flip-box-back">
+                        <img src="img/carta${numero}.png" width="80%">
+                    </div>
+                </div>
+            </div>
+            `);
+                    
+        }
+        $(".flip-box").click(async function() {
+            
+           if (!espera && $(this).attr("class") != "flip-box active primera" && 
+           $(this).attr("class") != "flip-box active acertada") {
+            $(this).toggleClass('active');
+            if (estado) {
+                espera=true;
+                await sleep(1000);
+                $(this).toggleClass("segunda");
+                if ($(".primera").attr("name") == $(".segunda").attr("name") ) {
+                    puntuacion++;
+                    
+                    $(".primera").toggleClass("primera").toggleClass("acertada");
+                    $(".segunda").toggleClass("segunda").toggleClass("acertada");
+                    estado = false;
+                    espera = false
+                    if (puntuacion == 10) {
+                        $("#titulo").text(`YOU WIN!`);
+                    }
+                }
+                else if ($(".primera").attr("name") != $(".segunda").attr("name") ) {
+                    
+                    $(".primera").toggleClass('active');
+                    $(".segunda").toggleClass('active');
+                    $(".primera").toggleClass("primera");
+                    $(".segunda").toggleClass("segunda");
+                    await sleep(500);
+                    estado = false;
+                    espera = false
+                }
+            }
+            else if (!estado) {
+                $(this).toggleClass("primera");
+                estado=true;
+            }
+           }
+        });
+            
+    });
+    
+    </script>
+</head>
+<body>
+    <h1 id="titulo">Juego de las parejas</h1>
+    <div id="contenedor">
+    </div>
+</body>
+</html>

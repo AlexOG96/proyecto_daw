@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Adivina</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+    <h1>Adivina el número</h1>
+    <div class="contenedor">
+    <div  id="botonesNumeros"></div>
+    <div class="letrero" id="resultado"></div>
+    <div class="letrero" id="intentos"></div>
+    <button class="myButton" onclick="inicio()" style="display: none" id="reiniciar">Volver a jugar</button>
+</div>
+
+
+    <script>
+        for (i=1;i<=100;i++) {
+                document.getElementById("botonesNumeros").innerHTML += `<button  onclick="adivina
+            ('${i}')" id="${i}">${i}</button>`;
+            }
+        var numeroRandom = "";
+        var intentos;
+        function inicio() {
+        intentos = 5;
+        document.getElementById("intentos").innerHTML = "";
+        numeroRandom = Math.floor((Math.random() * 100) + 1);
+        for (i=1;i<=100;i++) {
+                document.getElementById(`${i}`).disabled = false;
+            }
+            document.getElementById("reiniciar").style.display = "none";
+            document.getElementById("resultado").innerHTML = "";
+        }
+
+        window.onload = inicio();
+        
+        
+        function adivina(numero) {
+         if (numero == numeroRandom) {
+             document.getElementById("resultado").innerHTML = `¡Enhorabuena, el número era ${numeroRandom}!`;
+             document.getElementById("intentos").innerHTML = `Has usado ${5-intentos} intentos`;
+             for (i=1;i<=100;i++) {
+                document.getElementById(`${i}`).disabled = "true";
+            }
+            document.getElementById("reiniciar").style.display = "block";
+         }
+         else if (numero > numeroRandom) {
+            document.getElementById("resultado").innerHTML = `Tu número es muy alto, sigue probando`;
+            for (i=numero;i<=100;i++) {
+                document.getElementById(`${i}`).disabled = "true";
+            }
+            intentos--;
+            if (intentos == 0) {
+                document.getElementById("resultado").innerHTML = `No te quedan intentos, has perdido`;
+                document.getElementById("intentos").innerHTML = "";
+                document.getElementById("reiniciar").style.display = "block";
+                for (i=1;i<=100;i++) {
+                document.getElementById(`${i}`).disabled = "true";
+            }
+            }
+            else {
+                document.getElementById("intentos").innerHTML = `Intentos restantes: ${intentos}`
+            }
+         }
+         else {
+            document.getElementById("resultado").innerHTML = `Tu número es muy bajo, sigue probando`;
+            for (i=1;i<=numero;i++) {
+                document.getElementById(`${i}`).disabled = "true";
+            }
+            intentos--;
+            if (intentos == 0) {
+                document.getElementById("resultado").innerHTML = `No te quedan intentos, has perdido`;
+                document.getElementById("intentos").innerHTML = "";
+                document.getElementById("reiniciar").style.display = "block";
+                for (i=1;i<=100;i++) {
+                document.getElementById(`${i}`).disabled = "true";
+            }
+            }
+            else {
+                document.getElementById("intentos").innerHTML = `Intentos restantes: ${intentos}`
+            }
+         }
+        }
+        
+        
+    </script>
+    
+</body>
+</html>
